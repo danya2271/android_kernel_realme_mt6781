@@ -4028,6 +4028,7 @@ void scheduler_tick(void)
 #if defined(OPLUS_FEATURE_SCHED_ASSIST) && defined(CONFIG_SCHED_WALT)
 	unsigned int flag = 0;
 #endif /* defined(OPLUS_FEATURE_SCHED_ASSIST) && defined(CONFIG_SCHED_WALT) */
+	unsigned long thermal_pressure;
 
 	sched_clock_tick();
 
@@ -4043,6 +4044,8 @@ void scheduler_tick(void)
 	slide_calc_boost_load(rq, &flag, cpu);
 	cpufreq_update_util(rq, flag);
 #endif
+	thermal_pressure = arch_scale_thermal_pressure(cpu_of(rq));
+	update_thermal_load_avg(rq_clock_task(rq), rq, thermal_pressure);
 	curr->sched_class->task_tick(rq, curr, 0);
 	cpu_load_update_active(rq);
 	calc_global_load_tick(rq);
