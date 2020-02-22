@@ -1254,6 +1254,10 @@ TRACE_EVENT(walt_task_util,
 );
 #endif /* defined(OPLUS_FEATURE_SCHED_ASSIST) && defined(CONFIG_SCHED_WALT) */
 
+DECLARE_TRACE(pelt_thermal_tp,
+	TP_PROTO(struct rq *rq),
+	TP_ARGS(rq));
+
 #endif /* CONFIG_SMP */
 
 #ifdef CONFIG_UCLAMP_TASK
