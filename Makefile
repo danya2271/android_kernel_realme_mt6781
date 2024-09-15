@@ -818,9 +818,6 @@ KBUILD_CFLAGS += $(call cc-option,-fno-reorder-blocks,) \
 endif
 
 ifeq ($(cc-name),clang)
-KBUILD_CFLAGS	+= -mllvm -inline-threshold=1
-KBUILD_CFLAGS	+= -mllvm -inlinehint-threshold=1
-KBUILD_CFLAGS   += -mllvm -unroll-threshold=1
 KBUILD_CFLAGS  += -mllvm -inline-savings-multiplier=18
 KBUILD_CFLAGS  += -mllvm -inline-cold-callsite-threshold=65
 KBUILD_CFLAGS  += -mllvm -ignore-tti-inline-compatible
