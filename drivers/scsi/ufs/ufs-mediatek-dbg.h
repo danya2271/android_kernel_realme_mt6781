@@ -115,14 +115,14 @@ struct cmd_hist_struct {
 	} cmd;
 };
 
-int ufsdbg_register(struct device *dev);
-int cmd_hist_enable(void);
-int cmd_hist_disable(void);
-void ufs_mediatek_dbg_dump(void);
-void ufs_mtk_dbg_add_trace(const char *dev_name,
+static inline int ufsdbg_register(struct device *dev) {return 0;}
+static inline int cmd_hist_enable(void) {return 0;}
+static inline int cmd_hist_disable(void) {return 0;}
+static inline void ufs_mediatek_dbg_dump(void) {}
+static inline void ufs_mtk_dbg_add_trace(const char *dev_name,
 				 const char *str, unsigned int tag,
 				 u32 doorbell, int transfer_len, u32 intr,
 				 u64 lba, u8 opcode,
-				 u8 crypt_en, u8 crypt_keyslot);
+				 u8 crypt_en, u8 crypt_keyslot) {}
 #endif
 

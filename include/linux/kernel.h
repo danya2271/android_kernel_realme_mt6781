@@ -784,6 +784,12 @@ __ftrace_vprintk(unsigned long ip, const char *fmt, va_list ap);
 
 extern void ftrace_dump(enum ftrace_dump_mode oops_dump_mode);
 #else
+
+#define trace_puts(str) do {} while (0)
+
+#define __trace_printk_check_format(fmt, args...)			\
+do {} while (0)
+
 static inline void tracing_start(void) { }
 static inline void tracing_stop(void) { }
 static inline void trace_dump_stack(int skip) { }

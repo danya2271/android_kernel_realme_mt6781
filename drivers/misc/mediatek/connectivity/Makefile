@@ -14,6 +14,9 @@
 # Connectivity combo driver
 # If KERNELRELEASE is defined, we've been invoked from the
 # kernel build system and can use its language.
+
+KBUILD_CFLAGS += -Wno-unused-function
+
 ifneq ($(KERNELRELEASE),)
     subdir-ccflags-y += -I$(srctree)/
     subdir-ccflags-y += -I$(srctree)/drivers/misc/mediatek/base/power/include
