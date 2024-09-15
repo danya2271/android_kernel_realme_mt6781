@@ -48,11 +48,7 @@ static struct task_struct *pick_highest_pushable_task(struct rq *rq, int cpu)
 
 static inline bool is_audio_app_group(struct task_struct *p)
 {
-#ifdef CONFIG_CGROUP_SCHED
-	return task_css(p, cpuset_cgrp_id)->id == CPUSET_AUDIO_APP;
-#else
 	return false;
-#endif
 }
 
 #ifdef CONFIG_SCHED_WALT

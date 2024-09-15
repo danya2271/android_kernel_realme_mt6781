@@ -5471,6 +5471,18 @@ static inline void update_overutilized_status(struct rq *rq)
 static inline void update_overutilized_status(struct rq *rq) { }
 #endif
 
+/* Runqueue only has SCHED_IDLE tasks enqueued */
+static int sched_idle_rq(struct rq *rq)
+{
+	return unlikely(rq->nr_running == rq->cfs.idle_h_nr_running &&
+	rq->nr_running);
+}
+
+static int sched_idle_cpu(int cpu)
+{
+	return sched_idle_rq(cpu_rq(cpu));
+}
+
 /*
  * The enqueue_task method is called before nr_running is
  * increased. Here we update the fair scheduling stats and

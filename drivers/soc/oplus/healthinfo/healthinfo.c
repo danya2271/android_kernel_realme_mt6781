@@ -764,7 +764,7 @@ static ssize_t cpu_info_read(struct file *filp, char __user *buff,
 
 	for_each_possible_cpu(cpu) {
 #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 4, 0))
-		scale_capacity = arch_scale_cpu_capacity(NULL, cpu);
+		scale_capacity = arch_scale_cpu_capacity(cpu);
 #else
 		scale_capacity = arch_scale_cpu_capacity(cpu);
 #endif

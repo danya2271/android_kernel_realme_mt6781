@@ -134,7 +134,7 @@ void update_ux_sched_cputopo(void)
 #if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 4, 0))
 		cpu_cap = arch_scale_cpu_capacity(cpu);
 #else
-		cpu_cap = arch_scale_cpu_capacity(NULL, cpu);
+		cpu_cap = arch_scale_cpu_capacity(cpu);
 #endif
 
 		/* add cpu with same capacity into target sched_cls */
@@ -2163,9 +2163,6 @@ static ssize_t proc_ux_state_read(struct file *file, char __user *buf,
 	if (!task)
 		return -ESRCH;
 
-#ifdef CONFIG_CGROUP_SCHED
-	cpuset_id = task_css(task, cpuset_cgrp_id)->id;
-#endif
 	ux_state = task->ux_state;
 	put_task_struct(task);
 

@@ -208,7 +208,7 @@ static DEFINE_PER_CPU(struct teo_cpu, teo_cpus);
 #ifdef CONFIG_SMP
 static bool teo_cpu_is_utilized(int cpu, struct teo_cpu *cpu_data)
 {
-	return sched_cpu_util(cpu, arch_scale_cpu_capacity(NULL, cpu)) > cpu_data->util_threshold;
+	return sched_cpu_util(cpu, arch_scale_cpu_capacity(cpu)) > cpu_data->util_threshold;
 }
 #else
 static bool teo_cpu_is_utilized(int cpu, struct teo_cpu *cpu_data)
@@ -598,7 +598,7 @@ static int teo_enable_device(struct cpuidle_driver *drv,
 			     struct cpuidle_device *dev)
 {
 	struct teo_cpu *cpu_data = per_cpu_ptr(&teo_cpus, dev->cpu);
-	unsigned long max_capacity = arch_scale_cpu_capacity(NULL, dev->cpu);
+	unsigned long max_capacity = arch_scale_cpu_capacity(dev->cpu);
 	int i;
 
 	memset(cpu_data, 0, sizeof(*cpu_data));
