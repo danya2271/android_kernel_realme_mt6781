@@ -289,8 +289,6 @@ static s32 cmdq_clk_enable(struct cmdq *cmdq)
 #else
 		writel(0, cmdq->base + GCE_GCTL_VALUE);
 #endif
-		/* make sure pm not suspend */
-		cmdq_lock_wake_lock(cmdq, true);
 		cmdq_init(cmdq);
 	}
 
@@ -666,6 +664,7 @@ void cmdq_init_cmds(void *dev_cmdq)
 		cmdq_core_reset(cmdq);
 		cmdq_thread_reset(cmdq, thread);
 		cmdq_init_cpu(cmdq);
+		cmdq_lock_wake_lock(cmdq, true);
 	}
 	writel(CMDQ_THR_DISABLED, thread->base + CMDQ_THR_ENABLE_TASK);
 
