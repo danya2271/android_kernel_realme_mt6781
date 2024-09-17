@@ -789,12 +789,6 @@ KBUILD_CFLAGS += $(call cc-ifversion, -gt, 0900, \
 
 KBUILD_CFLAGS += $(call cc-ifversion, -lt, 0409, \
 			$(call cc-disable-warning,maybe-uninitialized,))
-#Enable MLGO
-ifeq ($(shell test $(CONFIG_CLANG_VERSION) -gt 180000; echo $$?),0)
-KBUILD_CFLAGS   += -mllvm -regalloc-enable-advisor=release
-KBUILD_LDFLAGS  += -mllvm -regalloc-enable-advisor=release
-KBUILD_LDFLAGS  += -mllvm -enable-ml-inliner=release
-endif
 
 # Tell gcc to never replace conditional load with a non-conditional one
 KBUILD_CFLAGS	+= $(call cc-option,--param=allow-store-data-races=0)
