@@ -98,7 +98,6 @@ static char buffer[4096] = "[BL] Set Backlight directly ";
 
 static void backlight_debug_log(int level, int mappingLevel)
 {
-<<<<<<< HEAD
 	unsigned long cur_time_mod = 0;
 	unsigned long long cur_time_display = 0;
 	int ret = 0;
@@ -129,8 +128,6 @@ static void backlight_debug_log(int level, int mappingLevel)
 	}
 
 	last_time = sched_clock();
-=======
->>>>>>> fc76abd1a25f (treewide: Reduce sched_clock() calls)
 }
 
 void mt_leds_wake_lock_init(void)
