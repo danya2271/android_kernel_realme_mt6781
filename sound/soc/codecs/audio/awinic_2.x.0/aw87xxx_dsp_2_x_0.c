@@ -29,7 +29,6 @@ static unsigned int g_spin_value = 0;
 static int g_rx_topo_id = AW_RX_DEFAULT_TOPO_ID;
 static int g_rx_port_id = AW_RX_DEFAULT_PORT_ID;
 
-#ifdef AW_MTK_OPEN_DSP_PLATFORM
 extern int mtk_spk_send_ipi_buf_to_dsp(void *data_buffer,
 				uint32_t data_size);
 extern int mtk_spk_recv_ipi_buf_from_dsp(int8_t *buffer,
@@ -49,24 +48,6 @@ static int mtk_spk_recv_ipi_buf_from_dsp(int8_t *buffer,
 	return 0;
 }
 */
-#elif defined AW_QCOM_OPEN_DSP_PLATFORM
-extern int afe_get_topology(int port_id);
-extern int aw_send_afe_cal_apr(uint32_t param_id,
-	void *buf, int cmd_size, bool write);
-/*
-static int afe_get_topology(int port_id)
-{
-	return -EPERM;
-}
-
-static int aw_send_afe_cal_apr(uint32_t param_id,
-	void *buf, int cmd_size, bool write)
-{
-	AW_LOGI("enter, no define AWINIC_ADSP_ENABLE", __func__);
-	return 0;
-}
-*/
-#endif
 
 #ifdef AW_QCOM_OPEN_DSP_PLATFORM
 extern void aw_set_port_id(int rx_port_id);

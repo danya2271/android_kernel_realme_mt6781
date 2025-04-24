@@ -39,23 +39,9 @@
 
 static DEFINE_MUTEX(g_msg_dsp_lock);
 
-#ifdef AW_MTK_OPEN_DSP_PLATFORM
 extern int mtk_spk_send_ipi_buf_to_dsp(void *data_buffer, int32_t data_size);
 extern int mtk_spk_recv_ipi_buf_from_dsp(int8_t *buffer,
 					int16_t size, int32_t *buf_len);
-#else
-
-static int mtk_spk_send_ipi_buf_to_dsp(void *data_buffer, int32_t data_size)
-{
-	return 0;
-}
-
-static int mtk_spk_recv_ipi_buf_from_dsp(int8_t *buffer,
-					int16_t size, int32_t *buf_len)
-{
-	return 0;
-}
-#endif
 
 bool aw87xx_platform_init(void)
 {
